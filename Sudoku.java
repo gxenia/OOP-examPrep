@@ -62,15 +62,6 @@ public class Sudoku {
 		return true;		
 	}//assignable
 	
-	/*
-	 * Tutte le celle, escluse quelle pre-impostate, sono evidentemente punti di scelta, e le scelte
-	 * ammissibili per una data cella (non pre-impostata) sono i numeri da 1 a 9 che soddisfano 
-	 * i vincoli.
-	 * Si osserva che una cella <i,j> può essere identificata anche da un numero unico dato da: 
-	 * nc=i*9+j.
-	 * Viceversa, dato un numero di cella nc, le sue coordinate sono univocamente determinate da:
-	 * <nc/9,nc%9>.
-	 */
 	
 	private void fillNumber( int nc ) { // nc e' punto di scelta
 		if ( nc<80 && !isZero(nc) ) fillNumber(nc+1);
