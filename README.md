@@ -5,4 +5,6 @@ In this repository you'll find:
 - `KMeans.java` in the `kmeans` package:
     a simpler version of the notorious clustering algorithm.
 - `BagImpl.java` in the `bag` package:
-    implementation of the "Bag" data type - also known as "Multiset". 
+    implementation of the "Bag" data type - also known as "Multiset".
+- `PN.java` in the `pn` package:
+    simulation of the evolution of a "Petri Net", one of several mathematical modeling languages for the description of distributed systems
