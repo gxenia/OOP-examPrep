@@ -10,3 +10,5 @@ In this repository you'll find:
     simulation of the evolution of a "Petri Net", one of several mathematical modeling languages for the description of distributed systems
 - `SpellingChecker.java` in the `spelling_checker` package:
     creates a file with the corrections to be made onto a provided document based on the Levenshtein distance
+- `Point.java` in the `medoid` package:
+    Medoids are representative objects of a data set or a cluster within a data set whose sum of dissimilarities to all the objects in the cluster is minimal
