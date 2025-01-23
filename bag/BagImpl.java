@@ -99,6 +99,25 @@ public class BagImpl<T> extends AbstractBag<T> {
 		return pq.poll().getKey();
 	}
 	
+	public T piuFrequentePQ2() {
+		PriorityQueue<Entry<T, Integer>> pq = new PriorityQueue<>( cardinality(), 
+			new Comparator<Entry<T, Integer>>() {
+				public int compare( Entry<T, Integer> e1, Entry<T, Integer> e2 ) {
+					return e2.getValue().compareTo(e1.getValue());
+				}
+		});
+		for ( Entry<T, Integer> x : bag.entrySet() ) pq.add( x );
+		return pq.poll().getKey();
+	}
+	
+	public T piuFrequentePQ3() {
+		PriorityQueue<Entry<T, Integer>> pq = new PriorityQueue<>( cardinality(), 
+			(e1, e2) -> e2.getValue().compareTo(e1.getValue())
+		);
+		for ( Entry<T, Integer> x : bag.entrySet() ) pq.add( x );
+		return pq.poll().getKey();
+	}
+	
 	
 	public static void main( String...args ) {
 		Scanner sc = new Scanner( System.in );
@@ -142,7 +161,8 @@ public class BagImpl<T> extends AbstractBag<T> {
 		
 		BagImpl<String> b1 = new BagImpl<>(b);
 		System.out.println(b1);
-		System.out.println(b1.piuFrequentePQ());
+		System.out.println(b1.piuFrequentePQ2());
+		System.out.println(b1.piuFrequentePQ3());
 		
 		sc.close();
 	}//main
