@@ -27,8 +27,13 @@ public interface Bag<T> extends Iterable<T>{
 	int multiplicity( T x ); //ritorna il numero di volte in cui x è presente in this, di seguito abbreviata m(x)
 	
 	void add( T x ); //aggiunge una singola occorrenza di x <- la aggiunge a this e quindi non posso usare factory()
-	void add( T x, int multiplicity ); // usa la tua fantasia
-	void addAll( Bag<T> b ); //usa la tua fantasia
+	
+	default void add( T x, int multiplicity ) {
+		for ( int i = 0; i < multiplicity; ++i ) add(x);
+	}
+	default void addAll( Bag<T> b ) {
+		for ( T x : b ) add(x, b.multiplicity(x));
+	}
 	
 	boolean remove( T x ); //rimuove una singola occorrenza di x e restituisce true se this è modificato
 	

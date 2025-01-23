@@ -54,10 +54,6 @@ public class BagImpl<T> extends AbstractBag<T> {
 		bag.put(x, multiplicity);
 	}//add
 	
-	public void addAll( Bag<T> b ) {
-		for ( T x : b )
-			add(x, b.multiplicity(x));
-	}//addAll
 	
 	public boolean remove( T x ) {
 		if ( bag.containsKey(x) ) {
@@ -164,6 +160,9 @@ public class BagImpl<T> extends AbstractBag<T> {
 		System.out.println(b1.piuFrequentePQ2());
 		System.out.println(b1.piuFrequentePQ3());
 		
+		b.addAll(b1);
+		System.out.println(b);
+		System.out.println(b1.piuFrequentePQ3());
 		sc.close();
 	}//main
 	
