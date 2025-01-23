@@ -10,6 +10,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
@@ -19,6 +21,11 @@ public class BagImpl<T> extends AbstractBag<T> {
 	
 	public BagImpl() {
 		bag = new HashMap<>();
+	}
+	public BagImpl( Bag<T> b ) {
+		this();
+		for ( T elem : b )
+			add(elem, b.multiplicity(elem) );
 	}
 	public BagImpl( T[] array ) {
 		this();
@@ -81,14 +88,28 @@ public class BagImpl<T> extends AbstractBag<T> {
 		return null;
 	}
 	
+	class C1 implements Comparator<Entry<T, Integer>> {
+		public int compare( Entry<T, Integer> e1, Entry<T, Integer> e2 ) {
+			return e2.getValue().compareTo(e1.getValue());
+		}
+	}//C1
+	public T piuFrequentePQ() {
+		PriorityQueue<Entry<T, Integer>> pq = new PriorityQueue<>( cardinality(), new C1() );
+		for ( Entry<T, Integer> x : bag.entrySet() ) pq.add( x );
+		return pq.poll().getKey();
+	}
+	
 	
 	public static void main( String...args ) {
 		Scanner sc = new Scanner( System.in );
+		/*
 		String nf;
 		do {
 			System.out.print("Inserire nome file: ");
 			nf = sc.next(); sc.nextLine();
 		} while ( !nf.matches(".*\\.txt") );
+		*/
+		String nf = "c:\\poo-file\\cappuccettoRosso.txt";
 		File f = new File(nf);
 		if ( !f.exists() )
 			throw new IllegalArgumentException("Il file " + f + " è inesistente");
@@ -118,6 +139,10 @@ public class BagImpl<T> extends AbstractBag<T> {
 
 		System.out.println(b);
 		System.out.println(b.piuFrequente());
+		
+		BagImpl<String> b1 = new BagImpl<>(b);
+		System.out.println(b1);
+		System.out.println(b1.piuFrequentePQ());
 		
 		sc.close();
 	}//main
